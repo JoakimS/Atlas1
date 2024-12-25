@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trigger GET Request</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #message {
+        font-size: 30px;
+        color: #333;
+      }
+      #triggerButton {
+        font-size: 18px;
+        padding: 15px 30px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+
+      #triggerButton:hover {
+        background-color: #0056b3;
+        transform: scale(1.1);
+      }
+
+      #triggerButton:active {
+        background-color: #004085;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Click the button to trigger the GET request</h1>
+    <button id="triggerButton">Click me</button>
+    <div id="message"></div>
+
+    <script>
+      document.getElementById("triggerButton").addEventListener("click", () => {
+        fetch("/about")
+          .then((response) => response.text())
+          .then((html) => {
+            document.getElementById("message").innerHTML = html;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+    </script>
+  </body>
+</html>
